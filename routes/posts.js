@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post');
-const debug = require('debug');
+const postmodel = require('../models/postmodel');
+// const debug = require('debug');
 
-debugWarn = debug('warn');
-debugError = debug('error');
+// debugWarn = debug('warn');
+// debugError = debug('error');
 
 router.get('/', (req, res) => {
     res.send('You are in posts route');
@@ -16,13 +16,13 @@ router.get('/specific', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log(req.body);
-    const postToServer = new Post({
+    const posttoserver = new postmodel({
         title: req.body.title,
         description: req.body.description
     });
-    console.log(postToServer);
+    console.log(posttoserver);
 
-    postToServer.save((err, result) => {
+    posttoserver.save((err, result) => {
         if (err) {
             res.json(err)
         } else {
